@@ -46,17 +46,6 @@ public class SecurityConfig{
         return new BCryptPasswordEncoder();
     }
 
-    @Bean //InMemory storage method. Only for example!
-    public UserDetailsService userDetailsService(){
-
-        var admin = User.withUsername("admin")
-                .password(passwordEncoder().encode("admin"))
-                .roles("ADMIN")
-                .build();
-
-        return new InMemoryUserDetailsManager(admin);
-    }
-
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
         auth.jdbcAuthentication()
