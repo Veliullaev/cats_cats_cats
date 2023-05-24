@@ -5,6 +5,7 @@ import com.example.cats_cats_cats.repositories.CatRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,6 +19,7 @@ import java.util.stream.Collectors;
 public class CatService {
 
     CatRepository repository;
+    ApplicationEventPublisher eventPublisher;
 
     public List<Cat> getAllByCats(){
 
@@ -26,6 +28,7 @@ public class CatService {
     }
 
     public void addCat(Cat cat) {
+        eventPublisher.publishEvent(cat);
         repository.save(cat);
     }
 

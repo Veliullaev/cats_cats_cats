@@ -13,7 +13,6 @@ import lombok.*;
 @Getter
 @Setter
 @Builder
-//@NoArgsConstructor(force = true)
 @AllArgsConstructor
 @Table(name = "cats")
 @Entity(name = "cat")

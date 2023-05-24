@@ -1,8 +1,13 @@
 package com.example.cats_cats_cats.entities;
 
+import com.example.cats_cats_cats.constraits.AccountNameConstraint;
 import jakarta.persistence.*;
-import lombok.NonNull;
+import lombok.*;
 
+@Getter
+@Setter
+@Builder
+@AllArgsConstructor
 @Entity(name="account")
 @Table(name="accounts")
 public class Account {
@@ -10,7 +15,7 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NonNull
+    @AccountNameConstraint
     String name;
 
     @NonNull
@@ -18,6 +23,10 @@ public class Account {
 
     @NonNull
     String role;
+
+    public Account() {
+
+    }
 
     public Long getId() {
         return id;
