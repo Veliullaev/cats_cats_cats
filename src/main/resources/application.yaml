@@ -1,0 +1,27 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_HOST}:${POSTGRES_PORT:5432}/${POSTGRES_DB_NAME:cats}
+    username: ${POSTGRES_USERNAME}
+    password: ${POSTGRES_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+  liquibase:
+    default-schema: ${POSTGRES_SCHEMA:public}
+    change-log: classpath:db/changelog/db.changelog-master.xml
+
+    enabled: true
+    contexts: prod
+
+
+  jackson:
+    mapper:
+      infer-creator-from-constructor-properties: true
+
+logging:
+  level:
+    sql: debug
+
